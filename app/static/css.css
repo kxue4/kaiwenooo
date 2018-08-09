@@ -2,8 +2,7 @@
 
 body.homepage {
     font-family: Helvetica, Tahoma, Arial, serif;
-    background: url(img/index_background.png) no-repeat fixed center 0;
-    background-size: cover;
+    background-color: lightgray;
 }
 
 div.homepage {
@@ -25,8 +24,14 @@ h1.homepage {
 
 /* universal */
 
+div.content {
+    max-width: 100%;
+    width: 80%;
+    margin: auto;
+}
+
+
 footer {
-    color: lightgrey;
     text-align: center;
     width: 100%;
     position: fixed;

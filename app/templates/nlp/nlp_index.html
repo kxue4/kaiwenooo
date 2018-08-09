@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../static/css.css" type="text/css" >
+    <title>Boson NLP</title>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-default" role="navigation" style="opacity: 0.8">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Kaiwen</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="http://kaiwen.ooo">Homepage</a></li>
+                        <li><a href="http://blog.kaiwen.ooo">Blog</a></li>
+                        <li><a href="http://pan.kaiwen.ooo">Pan</a></li>
+                        <li class="active"><a href="/nlp">BosonNLP</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="content">
+        <div class="panel panel-default" id="nlp_tag">
+            <div class="panel-heading">
+                <h3 class="panel-title">分词与词性标注</h3>
+            </div>
+            <div class="panel-body">
+                <p>因为中文的自然语言书写对于不同的词之间不会采用显示分隔符（如空格）进行分割，在大多数自然语言问题当中，分词都作为最基础的步骤。 词性用来描述一个词在上下文中的作用，而词性标注就是识别这些词的词性，以确定其在上下文中的作用。</p>
+                <form action="/nlp/tag" method="POST">
+                    <input type="text" class="form-control" name="query" placeholder="请输入Query">
+                    <br/>
+                    <button type="submit" class="btn btn-default">词性分析</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="panel panel-default" id="nlp_keywords">
+            <div class="panel-heading">
+                <h3 class="panel-title">情感分析</h3>
+            </div>
+            <div class="panel-body">
+                <p>关键词作为一个对文本常用的概括，可以被应用于关键词云计算等应用上。BosonNLP 的关键词提取引擎可以将文本自动进行关键词分析，给出每个词语相应的权重。注意这些权重的平方和为1。</p>
+                <form action="/nlp/sentiment" method="POST">
+                    <input type="text" class="form-control" name="query" placeholder="请输入Query">
+                    <br/>
+                    <select class="form-control" name="model">
+                        <option>通用</option>
+                        <option>汽车</option>
+                        <option>厨具</option>
+                        <option>餐饮</option>
+                        <option>新闻</option>
+                        <option>微博</option>
+                    </select>
+                    <br/>
+                    <button type="submit" class="btn btn-default">情感分析</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="panel panel-default" id="nlp_keywords">
+            <div class="panel-heading">
+                <h3 class="panel-title">关键词提取</h3>
+            </div>
+            <div class="panel-body">
+                <p>关键词作为一个对文本常用的概括，可以被应用于关键词云计算等应用上。BosonNLP 的关键词提取引擎可以将文本自动进行关键词分析，给出每个词语相应的权重。注意这些权重的平方和为1。</p>
+                <form action="/nlp/keywords" method="POST">
+                    <input type="text" class="form-control" name="query" placeholder="请输入Query">
+                    <br/>
+                    <input type="text" class="form-control" name="numbers" placeholder="请输入关键词数量 留空为100">
+                    <br/>
+                    <button type="submit" class="btn btn-default">关键词提取</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

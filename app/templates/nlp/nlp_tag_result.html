@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../static/css.css" type="text/css" >
+    <title>Boson NLP - 分词与词性标注</title>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-default" role="navigation" style="opacity: 0.8">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">切换导航</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Kaiwen</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="http://kaiwen.ooo">Homepage</a></li>
+                        <li><a href="http://blog.kaiwen.ooo">Blog</a></li>
+                        <li><a href="http://pan.kaiwen.ooo">Pan</a></li>
+                        <li class="active"><a href="/nlp">BosonNLP</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="content">
+        <div class="panel panel-default" id="nlp_keywords">
+            <div class="panel-heading">
+                <h3 class="panel-title">分词与词性标注结果</h3>
+            </div>
+            <div class="panel-body">
+            <table class="table table-bordered table-hover">
+                <caption>原始Query: {{query}}</caption>
+                <thead>
+                    <tr>
+                        <th style="text-align: center">单词</th>
+                        <th style="text-align: center">词性</th>
+                    </tr>
+                </thead>
+                <tbody style="text-align: center">
+                    {% for tag in tags %}
+                        <tr>
+                            <td>{{tag.word}}</td>
+                            <td>{{tag.tag}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p>本日剩余次数: {{limits}}<p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
