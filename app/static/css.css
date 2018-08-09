@@ -1,0 +1,36 @@
+/* homepage part*/
+
+body.homepage {
+    font-family: Helvetica, Tahoma, Arial, serif;
+    background: url(img/index_background.png) no-repeat fixed center 0;
+    background-size: cover;
+}
+
+div.homepage {
+    padding: 1.5em 0 1.5em;
+    max-width: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    text-align: center;
+    top: 40%;
+    position: fixed;
+    display: table;
+}
+
+h1.homepage {
+    font-size: 2.5em;
+    line-height: 1.2em;
+    color: lightgrey;
+}
+
+/* universal */
+
+footer {
+    color: lightgrey;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+}
+
+
