@@ -5,7 +5,7 @@
 # @File    : views.py
 # @Software: PyCharm
 from app import app
-from app.boson_nlp import *
+from app.models import *
 from flask import render_template, request
 
 

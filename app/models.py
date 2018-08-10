@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2018/8/6 17:13
 # @Author  : Kaiwen Xue
-# @File    : boson_nlp.py
+# @File    : models.py
 # @Software: PyCharm
 from __future__ import print_function, unicode_literals
 from bosonnlp import BosonNLP
@@ -123,6 +123,6 @@ def summary(content, title):
     :param title: title of news
     :return: summary
     """
-    result = nlp.summary(title, content, 0.3)  # parameter < 1: percentage of content, > 1: the total character of summary.
+    result = nlp.summary(title, content, 0.3)  # parameter < 1: percentage of content, > 1: the total character.
     limits = check_limits()['limits']['summary']['count-limit-remaining']
     return result, limits
