@@ -8,7 +8,7 @@
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="../../static/css.css" type="text/css" >
-    <title>Boson NLP - 分词与词性标注</title>
+    <title>Boson NLP - {{title}}</title>
 </head>
 
 <body>
@@ -41,26 +41,34 @@
     <div class="content">
         <div class="panel panel-default" id="nlp_keywords">
             <div class="panel-heading">
-                <h3 class="panel-title">分词与词性标注结果</h3>
+                <h3 class="panel-title">{{title}}结果</h3>
             </div>
             <div class="panel-body">
-            <table class="table table-bordered table-hover">
-                <caption>原始Query: {{query}}</caption>
-                <thead>
-                    <tr>
-                        <th style="text-align: center">单词</th>
-                        <th style="text-align: center">词性</th>
-                    </tr>
-                </thead>
-                <tbody style="text-align: center">
-                    {% for tag in tags %}
-                        <tr>
-                            <td>{{tag.word}}</td>
-                            <td>{{tag.tag}}</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            {% if is_form == 1 %}
+                <table class="table table-bordered table-hover">
+                    <caption>原始Query: {{query}}</caption>
+                        <thead>
+                            <tr>
+                                <th style="text-align: center">{{form_title_1}}</th>
+                                <th style="text-align: center">{{form_title_2}}</th>
+                            </tr>
+                        </thead>
+                        <tbody style="text-align: center">
+                            {% for dict in list %}
+                                <tr>
+                                    <td>{{dict.left}}</td>
+                                    <td>{{dict.right}}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                </table>
+            {% else %}
+                <p><strong>原始Query: </strong></p>
+                <p>{{query}}</p>
+                <br/>
+                <p><strong>{{p1}}</strong></p>
+                <p>{{p2}}</p>
+            {% endif %}
             <p>本日剩余次数: {{limits}}<p>
             </div>
         </div>

@@ -92,10 +92,57 @@
                     <br/>
                     <input type="text" class="form-control" name="numbers" placeholder="请输入关键词数量 留空为100">
                     <br/>
-                    <button type="submit" class="btn btn-default">关键词提取</button>
+                    <button type="submit" class="btn btn-default">提取关键词</button>
                 </form>
             </div>
         </div>
+
+        <div class="panel panel-default" id="nlp_suggest">
+            <div class="panel-heading">
+                <h3 class="panel-title">语义联想</h3>
+            </div>
+            <div class="panel-body">
+                <p>该接口返回与输入词语最相近的n个词，最大值可设定为100 。</p>
+                <form action="/nlp/suggest" method="POST">
+                    <input type="text" class="form-control" name="word" placeholder="请输入单词">
+                    <br/>
+                    <input type="text" class="form-control" name="number" placeholder="请输入联想词数量 留空为10">
+                    <br/>
+                    <button type="submit" class="btn btn-default">进行语义联想</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="panel panel-default" id="nlp_classify">
+            <div class="panel-heading">
+                <h3 class="panel-title">新闻分类</h3>
+            </div>
+            <div class="panel-body">
+                <p>本接口将新闻文本归类到预设的 14 个分类当中。(体育，教育，财经，社会，娱乐，军事，国内，科技，互联网，房产，国际，女人，汽车，游戏)</p>
+                <form action="/nlp/classify" method="POST">
+                    <input type="text" class="form-control" name="content" placeholder="请输入想分类的新闻内容">
+                    <br/>
+                    <button type="submit" class="btn btn-default">开始分类</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="panel panel-default" id="nlp_summary">
+            <div class="panel-heading">
+                <h3 class="panel-title">新闻摘要</h3>
+            </div>
+            <div class="panel-body">
+                <p>新闻摘要是指，在给定的字数限制范围内，摘取单篇或多篇新闻原文中的句子，来代表该篇或多篇新闻的大意和中心思想。</p>
+                <form action="/nlp/summary" method="POST">
+                    <input type="text" class="form-control" name="content" placeholder="请输入想摘要的新闻内容">
+                    <br/>
+                    <input type="text" class="form-control" name="title" placeholder="请输入新闻标题 可留空">
+                    <br/>
+                    <button type="submit" class="btn btn-default">提取摘要</button>
+                </form>
+            </div>
+        </div>
+
     </div>
 
 </body>

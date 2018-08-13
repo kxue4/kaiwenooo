@@ -32,14 +32,18 @@ def nlp_tag():
 
     for key, value in result_dict.items():
         each_dict = {}
-        each_dict['word'] = key
-        each_dict['tag'] = value
+        each_dict['left'] = key
+        each_dict['right'] = value
         tag_result.append(each_dict)
 
-    return render_template('nlp/nlp_tag_result.html',
+    return render_template('nlp/nlp_result.html',
+                           title='分词与词性标注',
+                           is_form=1,
+                           form_title_1='单词',
+                           form_title_2='词性',
                            query=query,
                            limits=str(limits),
-                           tags=tag_result)
+                           list=tag_result)
 
 
 @app.route('/nlp/keywords', methods=['POST'])
@@ -53,14 +57,18 @@ def nlp_keywords():
 
     for each in result_list:
         each_dict = {}
-        each_dict['word'] = each[1]
-        each_dict['percentage'] = each[0]
+        each_dict['left'] = each[1]
+        each_dict['right'] = each[0]
         keywords_result.append(each_dict)
 
-    return render_template('nlp/nlp_keywords_result.html',
+    return render_template('nlp/nlp_result.html',
+                           title='关键词提取',
+                           is_form=1,
+                           form_title_1='关键词',
+                           form_title_2='权重',
                            query=query,
                            limits=str(limits),
-                           keywords=keywords_result)
+                           list=keywords_result)
 
 
 @app.route('/nlp/sentiment', methods=['POST'])
@@ -74,12 +82,76 @@ def nlp_sentiment():
     result_list = result[0]  # [0.96231491234, 0.037685088]
     pos = result_list[0]
     neg = result_list[1]
+    sentiment_result = [{'left': '正面', 'right': pos}, {'left': '负面', 'right': neg}]
 
-    return render_template('nlp/nlp_sentiment_result.html',
+    return render_template('nlp/nlp_result.html',
+                           title='情感分析',
+                           is_form=1,
+                           form_title_1='感情类型',
+                           form_title_2='比例',
                            query=query,
                            limits=str(limits),
-                           positive=pos,
-                           negative=neg)
+                           list=sentiment_result)
+
+
+@app.route('/nlp/suggest', methods=['POST'])
+def nlp_suggest():
+    word = request.form['word']
+    number = request.form['number']
+    result = suggest(word, number)
+    limits = result[1]
+    suggest_dict = result[0]
+    suggest_result = []
+
+    for each in suggest_dict:
+        each_dict = {}
+        each_dict['left'] = each[1].split('/')[0]
+        each_dict['right'] = each[0]
+        suggest_result.append(each_dict)
+
+    return render_template('nlp/nlp_result.html',
+                           title='语义联想',
+                           is_form=1,
+                           form_title_1='联想词',
+                           form_title_2='相似度',
+                           query=word,
+                           limits=str(limits),
+                           list=suggest_result)
+
+
+@app.route('/nlp/classify', methods=['POST'])
+def nlp_classify():
+    content = request.form['content'].strip()
+    result = classify(content)
+    limits = result[1]
+    news_type = result[0]
+
+    return render_template('nlp/nlp_result.html',
+                           title='新闻分类',
+                           is_form=0,
+                           p1='分类结果:',
+                           p2=news_type,
+                           query=content,
+                           limits=str(limits),
+                           list=[])
+
+
+@app.route('/nlp/summary', methods=['POST'])
+def nlp_summary():
+    content = request.form['content'].strip()
+    title = request.form['title'].strip()
+    result = summary(content, title)
+    limits = result[1]
+    summary_result = result[0]
+
+    return render_template('nlp/nlp_result.html',
+                           title='新闻摘要',
+                           is_form=0,
+                           p1='摘要内容:',
+                           p2=summary_result,
+                           query=content,
+                           limits=str(limits),
+                           list=[])
 
 
 # Error handler part
