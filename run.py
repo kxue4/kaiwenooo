@@ -5,4 +5,4 @@
 # @File    : run.py
 # @Software: PyCharm
 from app import app
-app.run(debug = True)
+app.run(debug=True)
