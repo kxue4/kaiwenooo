@@ -6,7 +6,7 @@
 # @Software: PyCharm
 from app import app
 from app.models import *
-from flask import render_template, request
+from flask import render_template, request, redirect
 
 
 # Index page
@@ -14,6 +14,10 @@ from flask import render_template, request
 @app.route('/index')
 def index():
     return render_template('index.html')
+
+@app.route('/rss')
+def rss():
+    return redirect("http://www.kaiwenxue.com:1200", code=302)
 
 
 # NLP part
